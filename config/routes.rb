@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/:url' => 'browse#index'
+  get '/:url' => 'browse#index' , :constraints => { :url => /[^\/]+/ }
 
   get 'home/index'
 
