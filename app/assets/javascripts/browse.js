@@ -1,11 +1,15 @@
 // create a wrapper around native canvas element (with id="c")
 window.onload = function () {
+var windowWidth = $(window).width();
 (function() {
   var $ = function(id){return document.getElementById(id)};
 
   var canvas = this.__canvas = new fabric.Canvas('page-canvas', {
     isDrawingMode: true
   });
+    canvas.setHeight(window.innerHeight);
+    canvas.setWidth(window.innerWidth);
+    canvas.renderAll();
 
   fabric.Object.prototype.transparentCorners = false;
 
@@ -168,4 +172,4 @@ window.onload = function () {
     canvas.freeDrawingBrush.shadowBlur = 0;
   }
 })();
-}
+};
