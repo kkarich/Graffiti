@@ -1,15 +1,21 @@
 // Place all the styles related to the browse controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+    margin:0;
+}
 #page-iframe {
   width: 100vw;
-  position: absolute;
   top: 0;
-  height: 100vh;
+  height: 97vh;
   z-index: -1;
 }
 
 .canvas-container{
-    width:100vw;
-    height:100vh;
+    position:absolute !important;
+    
+}
+
+#save-form{
+    position:fixed;
 }

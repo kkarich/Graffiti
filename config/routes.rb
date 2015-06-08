@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get '/:url' => 'browse#index' , :constraints => { :url => /[^\/]+/ }
+  post '/start' => 'home#start'
+  post '/:url' => 'browse#save' , :constraints => { :url => /[^\/]+/ }
+  
 
-  get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

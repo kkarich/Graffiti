@@ -1,14 +1,16 @@
-// create a wrapper around native canvas element (with id="c")
+var canvas;
+
 window.onload = function () {
-var windowWidth = $(window).width();
+    var my_canvas = $('#saved-canvas').data('canvas');
 (function() {
   var $ = function(id){return document.getElementById(id)};
 
-  var canvas = this.__canvas = new fabric.Canvas('page-canvas', {
+  canvas = this.__canvas = new fabric.Canvas('page-canvas', {
     isDrawingMode: true
   });
     canvas.setHeight(window.innerHeight);
-    canvas.setWidth(window.innerWidth);
+    canvas.setWidth(window.innerWidth - 18);
+   canvas.loadFromJSON(my_canvas);
     canvas.renderAll();
 
   fabric.Object.prototype.transparentCorners = false;
@@ -22,6 +24,10 @@ var windowWidth = $(window).width();
       drawingShadowOffset = $('drawing-shadow-offset'),
       clearEl = $('clear-canvas');
 
+    $('#getcanvas').onclick = function(){
+        console.log('test')
+         alert(JSON.stringify(canvas.toJSON()))
+    }
   clearEl.onclick = function() { canvas.clear() };
 
   drawingModeEl.onclick = function() {
@@ -171,5 +177,14 @@ var windowWidth = $(window).width();
     canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
     canvas.freeDrawingBrush.shadowBlur = 0;
   }
+  
 })();
+
+
+
 };
+
+function getCanvas(f){
+    document.getElementById("canvas").value = JSON.stringify(canvas.toJSON());
+}
+
