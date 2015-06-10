@@ -1,11 +1,28 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<% @sites.each do |site| %>
-  <td><%= site.canvas %></td>
-<% end %>
-   <form action="/start" method="post">
-   <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-      <input type="text" name='url'>
-     
-      <input type="submit" value="Submit This Form">
-    </form>
+
+<div class="container">
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Graffiti your favorite site</h1>
+        <p>Enter a website url and start (http://www.example.com)</p>
+        <form action="/start" method="post">
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name='url'>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row -->
+        </form>
+      </div>
+    </div>
+    
+    <ul class="list-group">
+        <% @sites.each do |site| %>
+            <li class="list-group-item"><a href = <%= site.url %> ><%= site.prettyUrl %></a></li>
+        <% end %>
+    </ul>
+</div>

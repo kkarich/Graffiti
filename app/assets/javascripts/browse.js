@@ -14,23 +14,20 @@ window.onload = function () {
     canvas.renderAll();
 
   fabric.Object.prototype.transparentCorners = false;
+  var drawingModeEl = $('#drawing-mode'),
+      drawingOptionsEl = $('#drawing-mode-options'),
+      drawingColorEl = $('#drawing-color'),
+      drawingShadowColorEl = $('#drawing-shadow-color'),
+      drawingLineWidthEl = $('#drawing-line-width'),
+      drawingShadowWidth = $('#drawing-shadow-width'),
+      drawingShadowOffset = $('#drawing-shadow-offset'),
+      clearEl = $('#clear-canvas');
+      
+      clearEl.click(function() { 
+        canvas.clear() 
+      })
 
-  var drawingModeEl = $('drawing-mode'),
-      drawingOptionsEl = $('drawing-mode-options'),
-      drawingColorEl = $('drawing-color'),
-      drawingShadowColorEl = $('drawing-shadow-color'),
-      drawingLineWidthEl = $('drawing-line-width'),
-      drawingShadowWidth = $('drawing-shadow-width'),
-      drawingShadowOffset = $('drawing-shadow-offset'),
-      clearEl = $('clear-canvas');
-
-    $('#getcanvas').onclick = function(){
-        console.log('test')
-         alert(JSON.stringify(canvas.toJSON()))
-    }
-  clearEl.onclick = function() { canvas.clear() };
-
-  drawingModeEl.onclick = function() {
+  drawingModeEl.click(function() {
     canvas.isDrawingMode = !canvas.isDrawingMode;
     if (canvas.isDrawingMode) {
       drawingModeEl.innerHTML = 'Cancel drawing mode';
@@ -40,7 +37,7 @@ window.onload = function () {
       drawingModeEl.innerHTML = 'Enter drawing mode';
       drawingOptionsEl.style.display = 'none';
     }
-  };
+  });
 
   if (fabric.PatternBrush) {
     var vLinePatternBrush = new fabric.PatternBrush(canvas);
@@ -178,11 +175,15 @@ window.onload = function () {
     canvas.freeDrawingBrush.shadowBlur = 0;
   }
   
+
 })();
 
 
 
 };
+
+
+
 
 function getCanvas(f){
     document.getElementById("canvas").value = JSON.stringify(canvas.toJSON());

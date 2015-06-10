@@ -1,13 +1,12 @@
-
-
 <%= content_tag "div", id: "saved-canvas", data: {canvas: @site.canvas} do %>
 <% end %>
+
 <canvas id="page-canvas"  ></canvas>
 
-   <form id = "save-form" onsubmit="getCanvas(this)"  action= <%= @saveUrl %> method="post">
-   <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-     <input id="canvas" name="canvas" type="hidden" value = "hidden"/>
-      <input type="submit" value="Save This Page">
+    <form id = "save-form" onsubmit="getCanvas(this)"  action= <%= @saveUrl %> method="post">
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+        <input id="canvas" name="canvas" type="hidden" value = "hidden"/>
+        <input class="btn btn-default" type="submit" value="Save This Page">
     </form>
 
 <iframe id = "page-iframe" src=<%= @url %> name="mainFrame" frameBorder="0">
