@@ -2,11 +2,30 @@
 <% end %>
 
 <canvas id="page-canvas"  ></canvas>
+<section id="side-nav-menu"  class="hide" > 
+<div class = "menu-contents">
+    <div id="drawing-mode-options">
+   <label for="drawing-line-width">Line width:</label>
+    <span class="info">15</span><input type="range" value="15" min="0" max="150" id="drawing-line-width"><br>
 
+    <label for="drawing-color">Line color:</label>
+    <input  type="color" value="#005E7A" id="drawing-color"><br>
+
+   
+  </div>
+        <input id = 'clear-canvas'class="btn btn-warning" type="button" value="Clear Graffiti">
     <form id = "save-form" onsubmit="getCanvas(this)"  action= <%= @saveUrl %> method="post">
         <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
         <input id="canvas" name="canvas" type="hidden" value = "hidden"/>
-        <input class="btn btn-default" type="submit" value="Save This Page">
+        <input class="btn btn-success" type="submit" value="Save This Page">
     </form>
+</div>
+    </section>
+    <a id="menu-toggle">
+                  <i class="fa fa-chevron-right pulse animated infinite "></i>
+                  </a>
+    <div id = "graffit-controls">
+  
+    </div>
 
 <iframe id = "page-iframe" src=<%= @url %> name="mainFrame" frameBorder="0">

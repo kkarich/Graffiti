@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
       
-      @sites = Site.all
+      @sites = Site.where.not(prettyUrl: nil)
       
   end
   
