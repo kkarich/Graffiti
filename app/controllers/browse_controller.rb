@@ -17,7 +17,7 @@ class BrowseController < ApplicationController
       @url = URI.encode(params[:url], /\W/)
       site = Site.find_or_create_by(url: @url)
       site.canvas = (params[:canvas])
-      site.prettyUrl = URI.decode(params[:url], /\W/)
+      site.prettyUrl = URI.decode(params[:url], /\W/).gsub!(/\0/, '')
       site.save
       redirect_to '/' +  @url 
   end
